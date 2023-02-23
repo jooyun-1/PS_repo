@@ -6,7 +6,7 @@ index = 0
 answer = list()
 for i in range(N) :
     password = input()
-    left_stack, right_stack = list(), list()
+    left_stack, right_stack = list(), list()    # 커서의 왼쪽, 오른쪽을 나누고 Stack으로 저장
 
     for j in range(len(password)) :
         if password[j] == '<' :
@@ -20,7 +20,7 @@ for i in range(N) :
                 left_stack.pop()
         else :
             left_stack.append(password[j])
-    left_stack.extend(list(reversed(right_stack)))
+    left_stack.extend(list(reversed(right_stack)))  # 커서 오른쪽 stack은 반대 방향이므로 뒤집어서 붙혀줘야함.
     answer.append(''.join(left_stack))
 for ans in answer :
     print(''.join(ans))

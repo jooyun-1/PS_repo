@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(100000) # 파이썬에서는 1000번이상의 recursion이 발생하면 error 뜸
 
 def dfs(x, y) :
     if x >= N or y >= M or y < 0 or x < 0 :
