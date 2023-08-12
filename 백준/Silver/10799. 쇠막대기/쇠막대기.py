@@ -17,9 +17,9 @@ stack = []
 answer = 0
 for i in range(len(s)) :
     if s[i] == '(' :
-        stack.append([i,s[i]])
+        stack.append(i)
     elif s[i] == ')' :
-        index, ch = stack.pop()
+        index = stack.pop()
         dist = i - index
         cnt = s[index:i+1].count("*")
         answer += (cnt + 1)
