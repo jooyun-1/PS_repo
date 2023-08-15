@@ -9,7 +9,7 @@ def solution(s, skip, index):
         j = index
         while j > 0 :
             i += 1
-            if i > ord('z') :
+            if chr(i) >= 'z' :
                 i = ord('a')
             if chr(i) in skip :
                 j += 1
