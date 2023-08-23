@@ -9,10 +9,20 @@ public class Main {
     static boolean flag = false;
     static int minVal = Integer.MAX_VALUE;
 
+    static int countVisited(List<Integer> visited) {
+        int count = 0;
+        for (int v : visited) {
+            if (v == 1) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     static void dfs(int x, final List<Integer> arr) {
         visited.set(x, 1);
 
-        if (Collections.frequency(visited, 1) == arr.size()) {
+        if (countVisited(visited) == arr.size()) {
             flag = true;
             return;
         } else {
@@ -63,9 +73,8 @@ public class Main {
             }
 
             for (List<Integer> c : com) {
-                List<Integer> one = new ArrayList<>();
+                List<Integer> one = new ArrayList<>(c);
                 List<Integer> two = new ArrayList<>();
-                one.addAll(c);
                 for (int a : area) {
                     if (!one.contains(a)) {
                         two.add(a);
