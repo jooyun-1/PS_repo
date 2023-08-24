@@ -1,7 +1,7 @@
 def find_MST(s):
     key[0] = 0
 
-    for _ in range(N-1):
+    for _ in range(N):
         min_idx = -1
         min_val = float('inf')
         for i in range(N):
