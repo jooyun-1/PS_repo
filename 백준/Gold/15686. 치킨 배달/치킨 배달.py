@@ -1,28 +1,24 @@
-import sys
 from itertools import combinations
-
-N, M = map(int, sys.stdin.readline().split())
+N, M = map(int,input().split())
 city = []
-home = []
-chicken = []
-answer = float('inf')
-
+home, chicken = [], []
 for n in range(N) :
-    line = list(map(int,sys.stdin.readline().split()))
+    line = list(map(int,input().split()))
     city.append(line)
-for i in range(N) :
-    for j in range(N) :
-        if city[i][j] == 1 :
-            home.append([i,j])
-        elif city[i][j] == 2:
-            chicken.append([i,j])
-
-for chick in combinations(chicken, M) :
-    total = 0
+for r in range(N) :
+    for c in range(N) :
+        if city[r][c] == 1 :
+            home.append([r,c])
+        elif city[r][c] == 2 :
+            chicken.append([r,c])
+combi = list(combinations(chicken,M))
+answer = float('inf')
+for com in combi :
+    temp = 0
     for h in home :
         dist = float('inf')
-        for c in chick :
-            dist = min(dist, abs(h[0] - c[0]) + abs(h[1] - c[1]))
-        total += dist
-    answer = min(answer,total)
+        for c in com :
+            dist = min(dist, (abs(h[0] - c[0]) + abs(h[1] - c[1])))
+        temp += dist
+    answer = min(answer,temp)
 print(answer)
