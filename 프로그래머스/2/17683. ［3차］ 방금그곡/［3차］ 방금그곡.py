@@ -1,4 +1,3 @@
-# '#'이 붙은 음을 소문자로 변환하는 함수
 def change(music):
     if 'A#' in music:
         music = music.replace('A#', 'a')
@@ -16,38 +15,31 @@ def change(music):
 
 def solution(m, musicinfos):
     answer = []
-    index = 0  # 먼저 입력된 음악을 판단하기 위해 index 추가
-    for info in musicinfos:
+    index = 0
+    m = change(m)
+    for mi in musicinfos :
         index += 1
-        music = info.split(',')
-        start = music[0].split(':') # 시작 시간
-        end = music[1].split(':')  # 종료 시간
-        # 재생시간 계산
-        time = (int(end[0])*60 + int(end[1])) - (int(start[0])*60 + int(start[1]))
+        info = mi.split(',')
         
-        # 악보에 #이 붙은 음을 소문자로 변환
-        changed = change(music[3])
+        # 시작 시간 start[0],start[1]
+        start = info[0].split(':')
+        # 끝 시간 end[0],end[1]
+        end = info[1].split(':')
+        # 재생 시간
+        play_time = (int(end[0]) * 60 + int(end[1])) - (int(start[0]) * 60 + int(start[1]))
+        # 바뀐 멜로디
+        changed_music = change(info[3])
+        # 멜로디 길이
+        music_length = len(changed_music)
         
-        # 음악 길이
-        a = len(changed)
-        
-        # 재생시간에 재생된 음
-        b = changed * (time // a) + changed[:time%a]
-        
-        # 기억한 멜로디도 #을 제거
-        m = change(m)
-        
-        # 기억한 멜로디가 재생된 음에 있다면 결과배열에 [시간, index, 제목]을 추가
-        if m in b:
-            answer.append([time, index, music[2]])
-    
-    # 결과배열이 비어있다면 "None" 리턴
-    if not answer:
+        play_music = changed_music * (play_time // music_length) + changed_music[:play_time % music_length]
+        print(play_music, m)
+        if m in play_music :
+            answer.append((play_time,index,info[2]))
+    if len(answer) == 0 :
         return "(None)"
-    # 결과배열의 크기가 1이라면 제목 리턴
-    elif len(answer) == 1:
+    elif len(answer) == 1 :
         return answer[0][2]
-    # 결과 배열의 크기가 2보다 크다면 재생된 시간이 긴 음악, 먼저 입력된 음악순으로 정렬
-    else:
-        answer = sorted(answer, key=lambda x: (-x[0], x[1]))
-        return answer[0][2] # 첫번째 제목을 리턴
+    else :
+        answer = list(sorted(answer, key = lambda x : (-x[0],x[1])))
+        return answer[0][2]
