@@ -1,38 +1,39 @@
 from collections import deque
+
 def solution(n, wires):
-    res = 0
+    answer = n
     graph = [[] for _ in range(n+1)]
-    for a,b in wires:
+
+    for i in range(len(wires)) :
+        a, b = wires[i][0], wires[i][1]
         graph[a].append(b)
         graph[b].append(a)
     
-    def bfs(start):
+    def bfs(node) :
+        que = deque()
+        que.append(node)
         visited = [0] * (n+1)
-        q = deque([start])
-        visited[start] = 1
-        cnt = 1
-        while q:
-            s = q.popleft()
-            for i in graph[s]:
-                if not visited[i]:
-                    q.append(i)
+        visited[node] = 1
+        cnt = 0
+        while que :
+            x = que.popleft()
+            for i in graph[x] :
+                if visited[i] == 0 :
                     visited[i] = 1
+                    que.append(i)
                     cnt += 1
         return cnt
-            
-    res = n
-    for a,b in wires:
-        #graph에서 remove
+    
+    for i in range(len(wires)) :
+        a, b = wires[i][0], wires[i][1]
+        
         graph[a].remove(b)
         graph[b].remove(a)
         
-        res = min(abs(bfs(a) - bfs(b)), res)
+        answer = min(answer,abs(bfs(a) - bfs(b)))
         
-        #다시 append
+        
         graph[a].append(b)
         graph[b].append(a)
-    
-    return res
- 
-
-    print(solution(n, wires))
+        
+    return answer
