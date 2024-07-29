@@ -14,12 +14,12 @@ def solution(tickets):
     answer = []
     path = ["ICN"]
     
-    while path:
+    while path :
         now = path[-1]
         
-        if now not in t_dict or len(t_dict[now]) == 0:
+        if now not in t_dict or len(t_dict[now]) == 0 :
             answer.append(path.pop())
         else:
             path.append(t_dict[now].pop())
-                         
+
     return answer[::-1]
