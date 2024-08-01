@@ -5,7 +5,7 @@ def solution(n, t, m, timetable):
     timetable.sort()
     
     busTime = [9*60+t*i for i in range(n)]  # 버스 시간
-    
+
     i = 0  # 버스에 탈 크루의 인덱스
     for bt in busTime:  # 버스 도착 시간을 순회하면서
         cnt = 0  # 버스에 타는 크루 수
@@ -16,5 +16,4 @@ def solution(n, t, m, timetable):
             answer = bt
         else:  # 버스에 탈 자리 없으면 맨 마지막 크루보다 1분전에 도착
             answer = timetable[i-1]-1
-            
     return str(answer//60).zfill(2)+":"+str(answer%60).zfill(2)
