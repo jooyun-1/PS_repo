@@ -19,7 +19,6 @@ def solution(sequence):
         # 4
         s1_min = min(s1_min, s1)
         s2_min = min(s2_min, s2)
-
         # 5
         pulse *= -1
     return answer
