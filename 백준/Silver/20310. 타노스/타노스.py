@@ -3,17 +3,23 @@ import sys
 s = list(sys.stdin.readline().rstrip())
 one_count = s.count('1') // 2
 zero_count = s.count('0') // 2
-s.sort()
-answer = s.copy()
-for i in range(len(s)) :
 
-    if s[i] == '0' and zero_count > 0 :
-        answer.remove('0')
-        zero_count -= 1
+temp = 0
+for i in s :
+    if temp == one_count :
+        break
+    if i == '1' :
+        s.remove(i)
+        temp += 1
+s = s[::-1]
+temp = 0
+for i in s :
+    if temp == zero_count :
+        break
+    if i == '0' :
+        s.remove(i)
+        temp += 1
 
-    elif s[i] == '1' and one_count > 0 :
-        answer.remove('1')
-        one_count -= 1
+for i in s[::-1] :
+    print(i, end ='')
 
-print(''.join(answer))
-# print(one_count,zero_count,answer)
