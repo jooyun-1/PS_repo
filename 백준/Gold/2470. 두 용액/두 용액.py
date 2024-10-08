@@ -12,8 +12,7 @@ while left < right :
     if abs(temp) < res :
         res = abs(temp)
         final = [arr[left], arr[right]]
-        if res == 0 :
-            break
+
 
     if temp < 0 :
         left += 1
