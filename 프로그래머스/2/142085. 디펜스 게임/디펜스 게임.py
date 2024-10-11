@@ -8,10 +8,10 @@ def solution(n, k, enemy):
         sumEnemy += e
         heapq.heappush(pq,-e)
         if sumEnemy > n :
-            if k == 0 : 
+            if k == 0 :
                 break
-            else : 
-                k -= 1
+            else :
                 sumEnemy += heapq.heappop(pq)
+                k -= 1
         answer += 1
     return answer
