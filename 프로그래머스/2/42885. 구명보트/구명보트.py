@@ -2,16 +2,21 @@ from collections import deque
 
 def solution(people, limit):
     answer = 0
-    people = deque(sorted(people, reverse = True))
+    people.sort()
+    people = deque(people)
 
-    while len(people) > 1:
-        if people[0] + people[-1] <= limit: # 최댓값과 최솟값 묶어서 보트태움
+    while True :
+        if len(people) > 1 :
+            if people[0] + people[-1] <= limit :
+                people.popleft()
+                people.pop()
+                answer += 1
+            else :
+                people.pop()
+                answer += 1                
+        elif len(people) == 1:
+            people.pop()
             answer += 1
-            people.pop()    #최소 빼내고
-            people.popleft()    #최대 빼내고
-        else:
-            answer += 1
-            people.popleft()
-    if len(people) > 0 :
-        answer += 1
+        else :
+            break
     return answer
