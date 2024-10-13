@@ -5,7 +5,8 @@ def solution(bridge_length, weight, truck_weights):
     bridge = deque([0] * bridge_length)
     truck_weights = deque(truck_weights)
     w = 0
-    while truck_weights:
+    
+    while len(truck_weights) :
         w -= bridge.popleft()
         answer += 1
         if w + truck_weights[0] <= weight :
@@ -13,5 +14,5 @@ def solution(bridge_length, weight, truck_weights):
             bridge.append(truck_weights.popleft())
         else :
             bridge.append(0)
-    answer += bridge_length
+    answer += len(bridge)
     return answer
