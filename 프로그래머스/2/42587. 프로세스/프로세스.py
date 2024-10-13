@@ -1,7 +1,9 @@
 def solution(priorities, location):
     answer = 1
     index = location
-    while len(priorities) :
+    while True :
+        if len(priorities) == 0 :
+            break
         maxVal = max(priorities)
         if index < 0 :
             index = len(priorities) - 1
