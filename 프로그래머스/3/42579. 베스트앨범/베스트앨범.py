@@ -11,8 +11,7 @@ def solution(genres, plays):
         if g[0] not in total_genre_d:
             total_genre_d[g[0]] = g[1]
         else:
-            total_genre_d[g[0]] += g[1]
-            
+            total_genre_d[g[0]] += g[1]    
     total_genre_d = sorted(total_genre_d.items(), key = lambda x: -x[1])  
     
     for i in total_genre_d :
