@@ -1,10 +1,10 @@
 def solution(gems):
-    answer = [0, len(gems)]
-    size = len(set(gems))   # 보석 종류 갯수
+    answer = [0,len(gems)]
     left, right = 0, 0
     gems_dict = {gems[0] : 1}
-
-    while left < len(gems) and right < len(gems):
+    size = len(set(gems))
+    
+    while left < len(gems) and right < len(gems) :
         if len(gems_dict) == size :
             if right - left < answer[1] - answer[0] :
                 answer = [left, right]
@@ -20,5 +20,5 @@ def solution(gems):
             if gems[right] in gems_dict :
                 gems_dict[gems[right]] += 1
             else :
-                gems_dict[gems[right]] = 1
+                gems_dict[gems[right]] = 1            
     return [answer[0]+1, answer[1]+1]
