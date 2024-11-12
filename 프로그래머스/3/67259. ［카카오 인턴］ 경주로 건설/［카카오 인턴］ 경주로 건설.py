@@ -1,10 +1,10 @@
 from collections import deque
-
+import sys
 def solution(board):
     def bfs(start):
         direc = {0:[-1, 0], 1:[0, 1], 2:[1, 0], 3:[0, -1]} # 북,동,남,서 순서
         length = len(board)
-        visited = [[987654321]*length for _ in range(length)]
+        visited = [[sys.maxsize]*length for _ in range(length)]
         visited[0][0] = 0
 
         q = deque([start]) # x, y, cost, dir
