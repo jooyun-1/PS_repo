@@ -1,21 +1,19 @@
+from collections import deque
+
 def solution(priorities, location):
-    answer = 1
-    index = location
-    while True :
-        if len(priorities) == 0 :
-            break
-        maxVal = max(priorities)
-        if index < 0 :
-            index = len(priorities) - 1
-        else :
-            p = priorities.pop(0)
-            if p < maxVal :
-                priorities.append(p)
-                index -= 1
-            else :
-                if index == 0 :
-                    return answer
-                else :
-                    index -= 1
-                    answer += 1
+    q = deque(priorities)
+    answer = 0
+    while q:
+        m = max(q)
+        l = q.popleft()
+        location -= 1 
+        if l != m:
+            q.append(l)
+            if location < 0:
+                location = len(q) -1
+        else:
+            answer += 1
+            if location < 0:
+                break
+            
     return answer
