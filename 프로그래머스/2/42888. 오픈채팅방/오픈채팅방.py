@@ -1,17 +1,17 @@
 def solution(record):
     answer = []
-    nickname = dict()
-    for i in range(len(record)) :
-        arr = list(record[i].split())
-        if arr[0] == 'Enter' or arr[0] == 'Change' :
-            nickname[arr[1]] = arr[2]
-    
-    for i in range(len(record)) :
-        arr = list(record[i].split())
-        if arr[0] == 'Enter' :
-            str = nickname[arr[1]] + "님이 들어왔습니다."
-            answer.append(str)
-        elif arr[0] == 'Leave' :
-            str = nickname[arr[1]] + "님이 나갔습니다."
-            answer.append(str)
+    dic = dict()
+    for rec in record :
+        parts = rec.split()
+        if parts[0] != 'Leave' :
+            command, uid, name = parts[0], parts[1], parts[2]
+            dic[uid] = name
+
+    for rec in record :
+        parts = rec.split()
+        if parts[0] == 'Enter' :
+            answer.append(dic[parts[1]] + "님이 들어왔습니다.")
+        elif parts[0] == 'Leave' :
+            answer.append(dic[parts[1]] + "님이 나갔습니다.")        
+            
     return answer
