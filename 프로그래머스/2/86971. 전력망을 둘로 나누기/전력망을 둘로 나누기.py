@@ -32,7 +32,6 @@ def solution(n, wires):
         
         answer = min(answer,abs(bfs(a) - bfs(b)))
         
-        
         graph[a].append(b)
         graph[b].append(a)
         
