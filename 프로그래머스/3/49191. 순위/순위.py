@@ -15,7 +15,7 @@ def solution(n, results):
                         board[i][j] = 1
                     elif board[i][k] == -1 and board[k][j] == -1:
                         board[i][j] = -1
-
+    print(board)
     for row in board:
         if row.count(0) == 1:
             answer += 1   
