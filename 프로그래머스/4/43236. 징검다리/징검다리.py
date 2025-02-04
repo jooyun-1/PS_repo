@@ -3,20 +3,18 @@ def solution(distance, rocks, n):
     rocks.sort()
     rocks.append(distance)
     left, right = 1, distance
-    delete = 0
-    prev_rock = 0
     while left <= right :
         mid = (left + right) // 2
+        prev = 0
         delete = 0
-        prev_rock = 0
         for rock in rocks :
-            diff = rock - prev_rock
+            diff = rock - prev
             if diff < mid :
                 delete += 1
                 if delete > n :
                     break
             else :
-                prev_rock = rock
+                prev = rock
         if delete > n :
             right = mid - 1
         else :
