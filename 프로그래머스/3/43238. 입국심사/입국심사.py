@@ -1,6 +1,7 @@
 def solution(n, times):
     answer = 0
     left, right = 1, max(times) * n
+    
     while left <= right :
         mid = (left + right) // 2
         people = 0
@@ -13,5 +14,4 @@ def solution(n, times):
             right = mid - 1
         else :
             left = mid + 1
-            
     return answer
