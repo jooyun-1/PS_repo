@@ -1,10 +1,12 @@
 def solution(triangle):
     answer = 0
-    floors = len(triangle) - 1
-    
-    while floors > 0 :
-        for i in range(floors) :
-            triangle[floors-1][i] += max(triangle[floors][i], triangle[floors][i+1])
-        floors -= 1
-    answer = triangle[0][0]
+    for i in range(1,len(triangle)) :
+        for j in range(len(triangle[i])) :
+            if j == 0 :
+                triangle[i][j] += triangle[i-1][j]
+            elif j == len(triangle[i]) - 1 :
+                triangle[i][j] += triangle[i-1][j-1]
+            else :
+                triangle[i][j] += max(triangle[i-1][j],triangle[i-1][j-1])
+    answer = max(triangle[-1])
     return answer
