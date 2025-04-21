@@ -1,7 +1,9 @@
 def solution(numbers):
     answer = ''
     numbers = list(map(str,numbers))
-    numbers.sort(key = lambda x : x * 3, reverse = True)
-    for n in numbers : 
-        answer += n
+    
+    numbers = list(sorted(numbers,key = lambda x : x * 3, reverse = True))
+    for i in numbers:             
+        answer += i
+    
     return str(int(answer))
