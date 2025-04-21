@@ -7,8 +7,6 @@ def solution(n, times):
         people = 0
         for time in times :
             people += mid // time
-            if people >= n :
-                break
         if people >= n :
             answer = mid
             right = mid - 1
