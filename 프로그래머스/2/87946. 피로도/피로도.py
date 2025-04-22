@@ -1,18 +1,19 @@
+# 최소 필요 피로도, 소모 피로도
 from itertools import permutations
+
 def solution(k, dungeons):
     answer = -1
-    perm = list(permutations(dungeons, len(dungeons)))
-    
-    
-    for pe in perm :
-        cur = k
-        temp = 0
-        for p in pe :
-            min_val, val = p[0], p[1]
-            if cur >= min_val :
-                cur -= val
-                temp += 1
+    arr = list(permutations(dungeons,len(dungeons)))
+    temp = k
+    for perms in arr :
+        cnt = 0
+        k = temp
+        for perm in perms :
+            if k >= perm[0] :
+                k -= perm[1]
+                cnt += 1
             else :
                 break
-        answer = max(answer, temp)
+        answer = max(answer,cnt)
+        
     return answer
